@@ -8,3 +8,4 @@ Web de paletas de colores para UI's
 ## Dependencias
 - [Express.js](https://expressjs.com/)
 - [Dotenv](https://github.com/motdotla/dotenv)
+- [Morgan](https://github.com/expressjs/morgan)

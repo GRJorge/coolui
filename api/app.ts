@@ -1,10 +1,19 @@
 import express from 'express';
-import "dotenv/config"
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import 'dotenv/config';
+/* IMPORTACION DE RUTAS */
+import userRouter from './routes/user';
 
 const app = express();
 
-console.log(process.env.PORT)
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-app.listen(process.env.PORT,() => {
-    console.log(`App listen on port ${process.env.PORT}`)
-})
+app.use('/user', userRouter);
+
+app.listen(process.env.PORT, () => {
+    console.log(`App listen on port ${process.env.PORT}`);
+});

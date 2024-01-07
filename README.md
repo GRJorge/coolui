@@ -7,3 +7,4 @@ Web de paletas de colores para UI's
 # API
 ## Dependencias
 - [Express.js](https://expressjs.com/)
+- [Dotenv](https://github.com/motdotla/dotenv)

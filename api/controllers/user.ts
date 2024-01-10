@@ -1,14 +1,16 @@
 import { Request, Response } from 'express';
+import global from '../config/global';
 import bcrypt from 'bcryptjs';
 import User from '../models/user';
 
 export default {
+    //GUARDAR USUARIO
     saveUser: function (req: Request, res: Response) {
         const { username, email, password } = req.body;
         const salt = 10;
 
-        bcrypt.hash(password, salt, async (err, hash) => {
-            if (!err) {
+        bcrypt.hash(password, salt, async (error, hash) => {
+            if (!error) {
                 try {
                     const newUser = await new User({
                         username,
@@ -26,12 +28,21 @@ export default {
                         }
                     } else {
                         console.log(error);
-                        res.status(500).json({ msj: 'Error interno', error });
+                        global.sendInternalError(res, error);
                     }
                 }
             } else {
-                res.status(500).json({ msj: 'Error en encriptacion de la contraseña', error: err });
+                global.sendInternalError(res, error);
             }
         });
+    }, //OBTENER TODOS LOS USUARIOS
+    getAll: async function (req: Request, res: Response) {
+        try {
+            const allUsers = await User.find().lean();
+
+            res.status(200).json({ msj: 'Ok', data: allUsers });
+        } catch (error: any) {
+            global.sendInternalError(res, error);
+        }
     },
 };

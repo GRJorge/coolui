@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --light: #f0f2f5;
+    --dark: #2c3643;
+    --primary: #af92e1;
+    --secondary: #6ec3e5;
+    --success: #9bd3ae;
+    --error: #e78b8e;
+    --alert: #fccb6b;
+}
+
+* {
+    color: var(--dark);
+    font-family: "Quicksand", "sans-serif";
+    font-weight: 500;
+}
+
+body,
+p,
+span {
+    margin: 0;
+    padding: 0;
+}
+
+div,
+main,
+section {
+    display: flex;
+}

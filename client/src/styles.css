@@ -74,3 +74,23 @@ section {
     position: relative;
     top: 2px;
 }
+
+/* BUTTONS */
+.btn {
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    cursor: pointer;
+    padding: 0 8px;
+}
+.btn i{
+    position: relative;
+    top: 1px;
+}
+.btn:hover {
+    background-color: var(--dark);
+    color: var(--light);
+}
+.btn:hover i{
+    color: var(--light);
+}

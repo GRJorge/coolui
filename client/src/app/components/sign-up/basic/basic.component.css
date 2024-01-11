@@ -1,0 +1,7 @@
+form {
+    flex-direction: column;
+    gap: 8px;
+}
+form div:last-child{
+    justify-content: space-between;
+}

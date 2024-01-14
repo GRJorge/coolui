@@ -1,18 +1,18 @@
-<form>
+<form [formGroup]="formGroup">
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-envelope"></i></label>
-        <input type="email" placeholder="Correo..." />
+        <input formControlName="email" type="email" placeholder="Correo..." />
     </div>
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-lock"></i></label>
-        <input type="password" placeholder="Contraseña..." />
+        <input formControlName="password" type="password" placeholder="Contraseña..." />
     </div>
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-rotate-left"></i></label>
-        <input type="password" placeholder="Confirmar..." />
+        <input formControlName="confirmPassword" type="password" placeholder="Confirmar..." />
     </div>
     <div>
         <button type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
-        <button type="submit" class="btn bgSuccess">Siguiente</button>
+        <button type="submit" class="btn bgSuccess" [disabled]="!formGroup.valid">Siguiente</button>
     </div>
 </form>

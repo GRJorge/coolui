@@ -31,7 +31,7 @@ export class BasicComponent {
 
     @Output() nextForm = new EventEmitter();
 
-    formSubmit(): void {
+    submitForm(): void {
         this.nextForm.emit();
     }
     returnMain(): void {

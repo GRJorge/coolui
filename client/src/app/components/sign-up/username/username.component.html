@@ -1,4 +1,4 @@
-<form>
+<form (submit)="submitForm($event)">
     <div class="inputLight">
         <label for="" class="bgPrimary"><i class="fi fi-rr-user-astronaut"></i></label>
         <input [formControl]="usernameControl" type="text" placeholder="Nombre de usuario...">
@@ -8,7 +8,7 @@
         <notification msj="El nombre de usuario es obligatorio" icon="user-check" [hidden]="!usernameControl.errors?.['required']"/>
     }
     <div>
-        <button type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
+        <button (click)="previousClicked()" type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
         <button type="submit" class="btn bgSuccess" [disabled]="!usernameControl.valid">Siguiente</button>
     </div>
 </form>

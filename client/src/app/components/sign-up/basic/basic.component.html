@@ -3,16 +3,29 @@
         <label class="bgPrimary"><i class="fi fi-rr-envelope"></i></label>
         <input formControlName="email" type="email" placeholder="Correo..." />
     </div>
+    @if (getControl('email').dirty) {
+        <notification msj="El correo es invalido" icon="ban" [hidden]="!getControlError('email','email')"/>
+        <notification msj="El correo debe contener minimo cuatro caracteres" icon="square-4" variant="alert" [hidden]="!getControlError('email','minlength')"/>
+        <notification msj="El correo es obligatorio" icon="square-exclamation" [hidden]="!getControlError('email','required')"/>
+    }
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-lock"></i></label>
-        <input formControlName="password" type="password" placeholder="Contraseña..." />
+        <input [(ngModel)]="passwordModel" formControlName="password" type="password" placeholder="Contraseña..." />
     </div>
+    @if (getControl('password').dirty) {
+        <notification msj="La contraseña debe contener minimo seis caracteres" icon="square-6" variant="alert" [hidden]="!getControlError('password','minlength')"/>
+        <notification msj="La contraseña es obligatoria" icon="square-exclamation" [hidden]="!getControlError('password','required')"/>
+    }
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-rotate-left"></i></label>
-        <input formControlName="confirmPassword" type="password" placeholder="Confirmar..." />
+        <input [(ngModel)]="confirmPasswordModel" formControlName="confirmPassword" type="password" placeholder="Confirmar..." />
     </div>
+    @if (getControl('confirmPassword').dirty) {
+        <notification msj="Debes confirmar la contraseña" icon="lock" [hidden]="!getControlError('confirmPassword','required')"/>
+        <notification msj="Las contraseñas no coinciden" icon="key-skeleton-left-right" variant="alert" [hidden]="!(confirmPasswordModel !== passwordModel && confirmPasswordModel !== '')"/>
+    }
     <div>
         <button type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
-        <button type="submit" class="btn bgSuccess" [disabled]="!formGroup.valid">Siguiente</button>
+        <button type="submit" class="btn bgSuccess" [disabled]="!(formGroup.valid && confirmPasswordModel === passwordModel)">Siguiente</button>
     </div>
 </form>

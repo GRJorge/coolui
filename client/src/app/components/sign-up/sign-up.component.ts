@@ -11,5 +11,12 @@ import { LogoComponent } from '../logo/logo.component';
     styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-    numForm = 0
+    numForm = 1;
+
+    nextForm(): void {
+        this.numForm += 1;
+    }
+    previousForm(): void {
+        this.numForm -= 1;
+    }
 }

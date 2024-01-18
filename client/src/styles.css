@@ -35,6 +35,11 @@ form {
     display: flex;
 }
 
+i {
+    position: relative;
+    top: 1px;
+}
+
 /* BACKGROUNDS */
 .bgPrimary {
     background-color: var(--primary);

@@ -1,4 +1,5 @@
 form {
+    width: 216px;
     flex-direction: column;
     gap: 8px;
 }

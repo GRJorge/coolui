@@ -2,7 +2,7 @@
     <section>
         <logo [height]="64"/>
         <h1>Sign Up</h1>
-        <basic />
-        <username-form />
+        <basic [hidden]="!(numForm === 0)"/>
+        <username-form [hidden]="!(numForm === 1)"/>
     </section>
 </main>

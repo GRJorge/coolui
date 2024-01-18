@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../notification/notification.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'basic',
@@ -10,6 +11,8 @@ import { NotificationComponent } from '../../notification/notification.component
     styleUrl: './basic.component.css',
 })
 export class BasicComponent {
+    router = new Router();
+
     passwordModel?: string;
     confirmPasswordModel?: string;
 
@@ -24,5 +27,14 @@ export class BasicComponent {
     }
     getControlError(name: string, error: string): boolean {
         return this.formGroup.get(name)!.errors?.[error];
+    }
+
+    @Output() nextForm = new EventEmitter();
+
+    formSubmit(): void {
+        this.nextForm.emit();
+    }
+    returnMain(): void {
+        this.router.navigate(['/'])
     }
 }

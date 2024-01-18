@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup">
+<form (ngSubmit)="formSubmit()" [formGroup]="formGroup">
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-envelope"></i></label>
         <input formControlName="email" type="email" placeholder="Correo..." />
@@ -25,7 +25,7 @@
         <notification msj="Las contraseñas no coinciden" icon="key-skeleton-left-right" variant="alert" [hidden]="!(confirmPasswordModel !== passwordModel && confirmPasswordModel !== '')"/>
     }
     <div>
-        <button type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
+        <button (click)="returnMain()" type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
         <button type="submit" class="btn bgSuccess" [disabled]="!(formGroup.valid && confirmPasswordModel === passwordModel)">Siguiente</button>
     </div>
 </form>

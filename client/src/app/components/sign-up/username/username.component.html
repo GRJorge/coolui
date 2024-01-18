@@ -1,10 +1,14 @@
 <form>
     <div class="inputLight">
         <label for="" class="bgPrimary"><i class="fi fi-rr-user-astronaut"></i></label>
-        <input type="text" placeholder="Username...">
+        <input [formControl]="usernameControl" type="text" placeholder="Nombre de usuario...">
     </div>
+    @if (usernameControl.dirty) {
+        <notification msj="El nombre de usuario debe contener minimo tres caracteres" icon="square-3" variant="alert" [hidden]="!usernameControl.errors?.['minlength']" />
+        <notification msj="El nombre de usuario es obligatorio" icon="user-check" [hidden]="!usernameControl.errors?.['required']"/>
+    }
     <div>
         <button type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
-        <button type="submit" class="btn bgSuccess">Siguiente</button>
+        <button type="submit" class="btn bgSuccess" [disabled]="!usernameControl.valid">Siguiente</button>
     </div>
 </form>

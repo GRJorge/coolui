@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
 export class BasicComponent {
     router = new Router();
 
-    passwordModel?: string;
-    confirmPasswordModel?: string;
+    emailModel!: string;
+    passwordModel!: string;
+    confirmPasswordModel!: string;
 
     formGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(4)]),
@@ -29,12 +30,12 @@ export class BasicComponent {
         return this.formGroup.get(name)!.errors?.[error];
     }
 
-    @Output() nextForm = new EventEmitter();
+    @Output() sendData = new EventEmitter<string[]>();
 
     submitForm(): void {
-        this.nextForm.emit();
+        this.sendData.emit([this.emailModel,this.passwordModel]);
     }
     returnMain(): void {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
     }
 }

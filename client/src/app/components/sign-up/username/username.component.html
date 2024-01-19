@@ -1,7 +1,7 @@
 <form (submit)="submitForm($event)">
     <div class="inputLight">
         <label for="" class="bgPrimary"><i class="fi fi-rr-user-astronaut"></i></label>
-        <input [formControl]="usernameControl" type="text" placeholder="Nombre de usuario...">
+        <input [(ngModel)]="usernameModel" [formControl]="usernameControl" type="text" placeholder="Nombre de usuario...">
     </div>
     @if (usernameControl.dirty) {
         <notification msj="El nombre de usuario debe contener minimo tres caracteres" icon="square-3" variant="alert" [hidden]="!usernameControl.errors?.['minlength']" />

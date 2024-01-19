@@ -11,14 +11,15 @@ import { NotificationComponent } from '../../notification/notification.component
 })
 export class UsernameComponent {
     usernameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+    usernameModel!: string
 
-    @Output() nextForm = new EventEmitter();
     @Output() previousForm = new EventEmitter();
+    @Output() sendData = new EventEmitter<string>();
 
     submitForm(event: Event) {
         event.preventDefault();
 
-        this.nextForm.emit();
+        this.sendData.emit(this.usernameModel)
     }
     previousClicked() {
         this.previousForm.emit();

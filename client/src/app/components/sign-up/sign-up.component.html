@@ -2,7 +2,7 @@
     <section>
         <logo [height]="64" />
         <h1>Sign Up</h1>
-        <basic (nextForm)="nextForm()" [hidden]="!(numForm === 0)" />
-        <username-form (nextForm)="nextForm()" (previousForm)="previousForm()" [hidden]="!(numForm === 1)" />
+        <basic (sendData)="receiveBasicData($event)" [hidden]="!(numForm === 0)" />
+        <username-form (sendData)="receiveUsername($event)" (previousForm)="previousForm()" [hidden]="!(numForm === 1)" />
     </section>
 </main>

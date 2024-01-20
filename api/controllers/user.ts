@@ -21,10 +21,10 @@ export default {
                     res.status(201).json({ msj: 'Usuario creado con exito', data: newUser });
                 } catch (error: any) {
                     if (error.code === 11000) {
-                        if (error.keyPattern.username) {
-                            res.status(400).json({ msj: 'Nombre de usuario en uso', value: error.keyValue.username });
-                        } else if (error.keyPattern.email) {
-                            res.status(400).json({ msj: 'Correo en uso', value: error.keyValue.email });
+                        if (error.keyPattern.email) {
+                            res.status(400).json({ msj: 'Correo en uso', dataError: 'email', value: error.keyValue.email });
+                        } else if (error.keyPattern.username) {
+                            res.status(400).json({ msj: 'Nombre de usuario en uso', dataError: 'username', value: error.keyValue.username });
                         }
                     } else {
                         console.log(error);

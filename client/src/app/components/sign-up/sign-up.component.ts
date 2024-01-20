@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BasicComponent } from './basic/basic.component';
 import { UsernameComponent } from './username/username.component';
 import { LogoComponent } from '../logo/logo.component';
-import { User } from '../../interfaces/user';
+import { User, UserBasicData } from '../../interfaces/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-sign-up',
@@ -12,6 +13,8 @@ import { User } from '../../interfaces/user';
     styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
+    userService = inject(UserService);
+
     numForm = 0;
 
     newUser: User = {
@@ -25,16 +28,16 @@ export class SignUpComponent {
         this.numForm += 1;
 
         if (this.numForm > 1) {
-            alert('Save user in DB');
+            this.userService.newUser(this.newUser).subscribe();
         }
     }
     previousForm(): void {
         this.numForm -= 1;
     }
 
-    receiveBasicData(data: string[]) {
-        this.newUser.username = data[0];
-        this.newUser.email = data[1];
+    receiveBasicData(data: UserBasicData) {
+        this.newUser.email = data.email;
+        this.newUser.username = data.password;
 
         this.nextForm();
     }

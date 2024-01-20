@@ -7,6 +7,7 @@
         <notification msj="El nombre de usuario debe contener minimo tres caracteres" icon="square-3" variant="alert" [hidden]="!usernameControl.errors?.['minlength']" />
         <notification msj="El nombre de usuario es obligatorio" icon="user-check" [hidden]="!usernameControl.errors?.['required']"/>
     }
+    <notification msj="Nombre de usuario en uso" icon="duplicate" [hidden]="!showDuplicatedUsernameError" />
     <div>
         <button (click)="previousClicked()" type="button" class="btn bgAlert"><i class="fi fi-rr-angle-left"></i></button>
         <button type="submit" class="btn bgSuccess" [disabled]="!usernameControl.valid">Siguiente</button>

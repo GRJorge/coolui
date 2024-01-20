@@ -8,6 +8,7 @@
         <notification msj="El correo debe contener minimo cuatro caracteres" icon="square-4" variant="alert" [hidden]="!getControlError('email','minlength')"/>
         <notification msj="El correo es obligatorio" icon="square-exclamation" [hidden]="!getControlError('email','required')"/>
     }
+    <notification msj="Correo en uso" icon="duplicate" [hidden]="!showDuplicatedEmailError" />
     <div class="inputLight">
         <label class="bgPrimary"><i class="fi fi-rr-lock"></i></label>
         <input [(ngModel)]="passwordModel" formControlName="password" type="password" placeholder="Contraseña..." />

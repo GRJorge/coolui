@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../notification/notification.component';
 
@@ -10,6 +10,8 @@ import { NotificationComponent } from '../../notification/notification.component
     styleUrl: './username.component.css',
 })
 export class UsernameComponent {
+    @Input() showDuplicatedUsernameError = false
+
     usernameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
     usernameModel!: string
 

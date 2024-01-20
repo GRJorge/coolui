@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../notification/notification.component';
 import { Router } from '@angular/router';
@@ -13,6 +13,8 @@ import { UserBasicData } from '../../../interfaces/user';
 })
 export class BasicComponent {
     router = new Router();
+
+    @Input() showDuplicatedEmailError = false
 
     emailModel!: string;
     passwordModel!: string;

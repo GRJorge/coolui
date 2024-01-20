@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../notification/notification.component';
 import { Router } from '@angular/router';
+import { UserBasicData } from '../../../interfaces/user';
 
 @Component({
     selector: 'basic',
@@ -30,10 +31,10 @@ export class BasicComponent {
         return this.formGroup.get(name)!.errors?.[error];
     }
 
-    @Output() sendData = new EventEmitter<string[]>();
+    @Output() sendData = new EventEmitter<UserBasicData>();
 
     submitForm(): void {
-        this.sendData.emit([this.emailModel,this.passwordModel]);
+        this.sendData.emit({ email: this.emailModel, password: this.passwordModel });
     }
     returnMain(): void {
         this.router.navigate(['/']);

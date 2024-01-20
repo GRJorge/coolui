@@ -2,7 +2,12 @@
     <section>
         <logo [height]="64" />
         <h1>Sign Up</h1>
-        <basic (sendData)="receiveBasicData($event)" [hidden]="!(numForm === 0)" />
-        <username-form (sendData)="receiveUsername($event)" (previousForm)="previousForm()" [hidden]="!(numForm === 1)" />
+        <basic (sendData)="receiveBasicData($event)" [showDuplicatedEmailError]="duplicatedEmailError" [hidden]="!(numForm === 0)" />
+        <username-form (sendData)="receiveUsername($event)" (previousForm)="previousForm()" [showDuplicatedUsernameError]="duplicatedUsernameError" [hidden]="!(numForm === 1)" />
+        @if (numForm === 2) {
+            <div>
+                Cargando...
+            </div>
+        }
     </section>
 </main>

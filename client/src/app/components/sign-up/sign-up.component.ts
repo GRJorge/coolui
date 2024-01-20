@@ -4,11 +4,12 @@ import { UsernameComponent } from './username/username.component';
 import { LogoComponent } from '../logo/logo.component';
 import { User, UserBasicData } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
     selector: 'app-sign-up',
     standalone: true,
-    imports: [BasicComponent, UsernameComponent, LogoComponent],
+    imports: [BasicComponent, UsernameComponent, LogoComponent, NotificationComponent],
     templateUrl: './sign-up.component.html',
     styleUrl: './sign-up.component.css',
 })
@@ -16,6 +17,8 @@ export class SignUpComponent {
     userService = inject(UserService);
 
     numForm = 0;
+    duplicatedEmailError = false;
+    duplicatedUsernameError = false;
 
     newUser: User = {
         username: '',
@@ -28,7 +31,23 @@ export class SignUpComponent {
         this.numForm += 1;
 
         if (this.numForm > 1) {
-            this.userService.newUser(this.newUser).subscribe();
+            this.userService.newUser(this.newUser).subscribe({
+                next: () => {
+                    this.duplicatedEmailError = false
+                    this.duplicatedUsernameError = false
+                },
+                error: (err) => {
+                    if(err.status === 400){
+                        if (err.error.dataError === 'email') {
+                            this.duplicatedEmailError = true;
+                            this.numForm = 0
+                        } else {
+                            this.duplicatedUsernameError = true;
+                            this.numForm = 1
+                        }
+                    }
+                },
+            });
         }
     }
     previousForm(): void {

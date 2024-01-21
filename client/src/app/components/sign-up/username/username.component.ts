@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NotificationComponent } from '../../notification/notification.component';
+import { NotificationComponent } from '../../general/notification/notification.component';
 
 @Component({
     selector: 'username-form',

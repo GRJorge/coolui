@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { BasicComponent } from './basic/basic.component';
 import { UsernameComponent } from './username/username.component';
-import { LogoComponent } from '../logo/logo.component';
+import { LogoComponent } from '../general/logo/logo.component';
 import { User, UserBasicData } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
-import { NotificationComponent } from '../notification/notification.component';
+import { NotificationComponent } from '../general/notification/notification.component';
 
 @Component({
     selector: 'app-sign-up',

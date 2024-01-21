@@ -6,6 +6,7 @@ import { User, UserBasicData } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { NotificationComponent } from '../general/notification/notification.component';
 import { LoadingComponent } from '../general/loading/loading.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sign-up',
@@ -15,6 +16,7 @@ import { LoadingComponent } from '../general/loading/loading.component';
     styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
+    router = inject(Router);
     userService = inject(UserService);
 
     numForm = 0;
@@ -34,17 +36,21 @@ export class SignUpComponent {
         if (this.numForm > 1) {
             this.userService.newUser(this.newUser).subscribe({
                 next: () => {
-                    this.duplicatedEmailError = false
-                    this.duplicatedUsernameError = false
+                    this.duplicatedEmailError = false;
+                    this.duplicatedUsernameError = false;
+
+                    setTimeout(() => {
+                        this.router.navigate(['/'])
+                    }, 5000);
                 },
                 error: (err) => {
-                    if(err.status === 400){
+                    if (err.status === 400) {
                         if (err.error.dataError === 'email') {
                             this.duplicatedEmailError = true;
-                            this.numForm = 0
+                            this.numForm = 0;
                         } else {
                             this.duplicatedUsernameError = true;
-                            this.numForm = 1
+                            this.numForm = 1;
                         }
                     }
                 },

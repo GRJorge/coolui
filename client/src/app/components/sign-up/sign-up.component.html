@@ -4,10 +4,20 @@
         <h1>Sign Up</h1>
         <basic (sendData)="receiveBasicData($event)" [showDuplicatedEmailError]="duplicatedEmailError" [hidden]="!(numForm === 0)" />
         <username-form (sendData)="receiveUsername($event)" (previousForm)="previousForm()" [showDuplicatedUsernameError]="duplicatedUsernameError" [hidden]="!(numForm === 1)" />
+
         @if (numForm === 2) {
-            <div>
-                Cargando...
-            </div>
+            @defer () {
+                <div class="success">
+                    <notification msj="¡Te has registrado exitosamente!" icon="social-network" variant="success" />
+                    <notification msj="Redirigiendo..." icon="walking" variant="alert" />
+                </div>
+            } @placeholder {
+                <div>
+                    Loading..
+                </div>
+            } @loading(minimum 2s){
+                <loading />
+            }
         }
     </section>
 </main>

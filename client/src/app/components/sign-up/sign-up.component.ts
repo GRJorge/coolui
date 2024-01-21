@@ -5,11 +5,12 @@ import { LogoComponent } from '../general/logo/logo.component';
 import { User, UserBasicData } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { NotificationComponent } from '../general/notification/notification.component';
+import { LoadingComponent } from '../general/loading/loading.component';
 
 @Component({
     selector: 'app-sign-up',
     standalone: true,
-    imports: [BasicComponent, UsernameComponent, LogoComponent, NotificationComponent],
+    imports: [BasicComponent, UsernameComponent, LogoComponent, NotificationComponent, LoadingComponent],
     templateUrl: './sign-up.component.html',
     styleUrl: './sign-up.component.css',
 })

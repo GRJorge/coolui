@@ -11,3 +11,7 @@ section {
     padding: 32px;
     gap: 16px;
 }
+.success {
+    flex-direction: column;
+    gap: 8px;
+}
